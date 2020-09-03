@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+	
+}
+
+body {
+	
+	margin: 0;
+}
+
+.board {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-auto-rows: 1fr 1fr 1fr;
+	justify-content: center;
+	align-content: center;
+	
+	width: 400px;
+	min-height: 400px;
+}
+
+.num {
+	
+	border: 1px solid black;
+}
