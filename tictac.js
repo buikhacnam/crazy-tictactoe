@@ -1,4 +1,6 @@
 const mode = document.getElementById("modes");
+const statusWrapper = document.querySelector(".status-wrapper");
+const button = document.querySelector("button");
 
 const num1 = document.getElementById("1");
 const num2 = document.getElementById("2");
@@ -49,15 +51,21 @@ restart.addEventListener("click", newGame);
 function newGame() {
 	x.style.backgroundColor = "white";
 	o.style.backgroundColor = "#53c653";	
+	statusWrapper.style.backgroundColor = "white";
+	statusWrapper.style.color = "black";
+	  button.style.backgroundColor = "#53c653";
 	player1 = [];
 	player2 = [];
 		computer = [];
 		numTurn = 0;
 		turnOfcomputer = 0;
 		turnOfplayer = 0;
+		resultArr = '';
+		document.body.style.transition = "0,7s";
 	return pick.forEach(num => {	
 		
 		num.innerHTML = "";
+		num.style.color = "white";
 		if ((twoPlayer)) {	
 			num.addEventListener("click", display);
 		} else {
@@ -81,10 +89,28 @@ pick.forEach(num => {
 
 }) 
 
+let resultArr;
+function makeColor(arr) {
+	moreColor();
+	return arr.forEach(num => {
+		pick[num -1].style.transition = "0s";
+		return pick[num -1].style.color = "red"
+	})
+}
+
+function moreColor() {
+	setTimeout(() => {
+		statusWrapper.style.color = "white";
+		
+	  button.style.backgroundColor = "red";
+	  statusWrapper.style.backgroundColor = "red";
+	}, 1000)
+}
 
 function check(player) {
  	return	winArray.some(arr => {
 			return arr.every(num => {
+				resultArr = arr;
 				return player.includes(num);
 		})
 	})
@@ -100,7 +126,7 @@ function display(e) {
 		e.target.innerHTML =  "<h1><i class='fas fa-times'></i></h1>";
 		player1.push(Number.parseInt((e.target.id), 10));
 		if (check(player1)) {
-			
+			makeColor(resultArr);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop();
 		} else if (!check(player1) && numTurn == 9) {
@@ -116,6 +142,7 @@ function display(e) {
 
 		player2.push(Number.parseInt((e.target.id), 10));
 		if (check(player2)) {
+			makeColor(resultArr);
 			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
 			
 			stop();
@@ -163,6 +190,7 @@ function display2(e) {
 		e.target.innerHTML = "<h1><i class='far fa-circle'></i></h1>";
 		player2.push(Number.parseInt((e.target.id), 10));
 		if (check(player2)) {
+			makeColor(resultArr);
 			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
 			stop2();
 						
@@ -193,6 +221,7 @@ function computerTurn() {
 		pick[location].innerHTML = "<h1><i class='fas fa-times'></i></h1>";
 	
 		if (check2(computer)) {
+			makeColor(resultArr);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop2();
 		}   

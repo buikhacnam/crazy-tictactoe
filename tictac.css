@@ -1,6 +1,6 @@
 * {
 	box-sizing: border-box;
-	transition: 1s;
+	transition: 0.7s;
 }
 
 body {
@@ -54,6 +54,7 @@ body {
 
 .status-wrapper  {
 	text-align: center;
+	margin-top: 10px;
 }
 
 
@@ -91,7 +92,7 @@ body {
 	border-radius: 5px;
 	background-color:  #53c653;
 	color: white;
-	border-color: #53c653;
+	border : none;
 	outline: none;
 	font-size: 1.5em;
 }
