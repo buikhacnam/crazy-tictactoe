@@ -220,7 +220,7 @@ function computerTurn() {
 		pick[location].innerHTML = "<h1><i class='fas fa-times'></i></h1>";
 	
 		if (check2(computer)) {
-			makeColor(resultArr);
+			//makeColor(resultArr);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop2();
 		}   
