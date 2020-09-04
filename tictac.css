@@ -14,11 +14,18 @@
 
 .mode {
 	margin-bottom: 10px;
+	
 }
 
 .mode select {
 	padding: 5px;
-	text-align: center;
+	text-align-last: left;
+	border: none;
+	direction: rtl; 
+}
+
+.mode option {
+	direction: ltr; 
 }
 
 .info {
@@ -31,8 +38,12 @@
 }
 
 .turn {	
-	border: 1px solid black;
+	font-size: 1.3em;
 	padding: 0px 50px 0px 50px;
+}
+
+#o {
+	background-color: #53c653;
 }
 
 .info h3 {
@@ -46,16 +57,17 @@
 	grid-auto-rows: 1fr 1fr 1fr;
 	justify-content: center;
 	align-content: center;
-	font-size: 1.1em;
+	
 	background-color: #53c653;
 	width: 396px;
 	height: 396px;
+	text-align: center;
 }
 
 
 
 .num {
-	padding: 20px;
+	font-size: 1.5em;
 	text-align: center;
 	border: 2px solid white;
 	color: white;
@@ -78,7 +90,7 @@
 		height : 300px;
 		width: 300px;
 		font-size: 0.8em;
-		padding: 5px;
+		
 	}
 	
 	
