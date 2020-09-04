@@ -50,6 +50,7 @@ body {
 
 #o {
 	background-color: #53c653;
+	border: 1px solid #53c653;
 }
 
 .status-wrapper  {
