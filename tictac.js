@@ -47,8 +47,10 @@ function gamePlan() {
 restart.addEventListener("click", newGame);
 
 function newGame() {
-		player1 = [];
-		player2 = [];
+	x.style.backgroundColor = "white";
+	o.style.backgroundColor = "#53c653";	
+	player1 = [];
+	player2 = [];
 		computer = [];
 		numTurn = 0;
 		turnOfcomputer = 0;
@@ -98,6 +100,7 @@ function display(e) {
 		e.target.innerHTML =  "<h1><i class='fas fa-times'></i></h1>";
 		player1.push(Number.parseInt((e.target.id), 10));
 		if (check(player1)) {
+			
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop();
 		} else if (!check(player1) && numTurn == 9) {
@@ -114,6 +117,7 @@ function display(e) {
 		player2.push(Number.parseInt((e.target.id), 10));
 		if (check(player2)) {
 			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
+			
 			stop();
 		} else if (!check(player2) && numTurn == 9) {
 			status.innerHTML=("Draw");

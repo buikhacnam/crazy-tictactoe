@@ -1,6 +1,10 @@
 * {
 	box-sizing: border-box;
-	transition: 0.7s;
+	transition: 1s;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
 }
 
 .container {
@@ -14,7 +18,7 @@
 
 .mode {
 	margin-bottom: 10px;
-	
+	padding-top: 15px;
 }
 
 .mode select {
@@ -89,6 +93,7 @@
 	color: white;
 	border-color: #53c653;
 	outline: none;
+	font-size: 1.5em;
 }
 
 @media screen and (max-width: 410px) {
