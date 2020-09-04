@@ -51,9 +51,9 @@ restart.addEventListener("click", newGame);
 function newGame() {
 	x.style.backgroundColor = "white";
 	o.style.backgroundColor = "#53c653";	
-	statusWrapper.style.backgroundColor = "white";
+
 	statusWrapper.style.color = "black";
-	  button.style.backgroundColor = "#53c653";
+	  
 	player1 = [];
 	player2 = [];
 		computer = [];
@@ -100,11 +100,10 @@ function makeColor(arr) {
 
 function moreColor() {
 	setTimeout(() => {
-		statusWrapper.style.color = "white";
-		
-	  button.style.backgroundColor = "red";
-	  statusWrapper.style.backgroundColor = "red";
-	}, 1000)
+		statusWrapper.style.color = "red";
+	
+	  
+	}, 800)
 }
 
 function check(player) {

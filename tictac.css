@@ -54,7 +54,7 @@ body {
 
 .status-wrapper  {
 	text-align: center;
-	margin-top: 10px;
+	
 }
 
 
@@ -74,7 +74,7 @@ body {
 
 
 .num {
-	font-size: 1.5em;
+	font-size: 1.3em;
 	text-align: center;
 	border: 2px solid white;
 	color: white;
@@ -92,7 +92,7 @@ body {
 	border-radius: 5px;
 	background-color:  #53c653;
 	color: white;
-	border : none;
+	border :  #53c653;
 	outline: none;
 	font-size: 1.5em;
 }
