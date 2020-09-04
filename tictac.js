@@ -51,8 +51,8 @@ restart.addEventListener("click", newGame);
 function newGame() {
 	x.style.backgroundColor = "white";
 	o.style.backgroundColor = "#53c653";	
-
-	statusWrapper.style.color = "black";
+    status.innerHTML = "<i class='far fa-circle'></i> turn";
+	status.style.color = "black";
 	  
 	player1 = [];
 	player2 = [];
@@ -100,7 +100,7 @@ function makeColor(arr) {
 
 function moreColor() {
 	setTimeout(() => {
-		statusWrapper.style.color = "red";
+		status.style.color = "red";
 	
 	  
 	}, 800)
