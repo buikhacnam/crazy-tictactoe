@@ -8,7 +8,7 @@ const num7 = document.getElementById("7");
 const num8 = document.getElementById("8");
 const num9 = document.getElementById("9");
 
-const twoPlayer = false;
+const twoPlayer = true;
 let numTurn = 0;
 
 const player1 = [];
@@ -42,7 +42,7 @@ function check(player) {
 function display(e) {
 	numTurn += 1;
 	if (numTurn % 2 == 0) { 
-		e.target.innerHTML = "X";
+		e.target.innerHTML =  "<h1><i class='fas fa-times'></i></h1>";
 		player1.push(Number.parseInt((e.target.id), 10));
 		if (check(player1)) {
 			console.log("X won");
@@ -53,7 +53,7 @@ function display(e) {
 		}
 	
 	} else {
-		e.target.innerHTML = "O";
+		e.target.innerHTML = "<h1><i class='far fa-circle'></i></h1>";
 		player2.push(Number.parseInt((e.target.id), 10));
 		if (check(player2)) {
 			console.log("O won");
