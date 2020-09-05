@@ -29,6 +29,7 @@ let player2 = [];
 let computer = [];
 let crazyComputer = [];
 let insaneComputer = [];
+let insaneComputer2 = [];
 
 mode.addEventListener("change", gamePlan);
 function gamePlan() {
@@ -60,7 +61,8 @@ restart.addEventListener("click", newGame);
 
 function newGame() {
     crazyComputer = [];
-    insaneComputer = [];
+	insaneComputer = [];
+	insaneComputer2 = [];
 	x.style.backgroundColor = "white";
 	o.style.backgroundColor = "#53c653";	
     status.innerHTML = "<i class='far fa-circle'></i> turn";
@@ -96,6 +98,7 @@ function newGame() {
 	} else if (gameMode == "insane"){
 		insane()
 		insaneSetup();
+		computer.push(insaneComputer2[0]);
 		
 	}
 }
@@ -317,6 +320,7 @@ function crazy() {
 		location2 = autoGenerate();
 	} while (location1 == location2);
 	crazyComputer.push(location1, location2);
+	
 }
 
 function insane() {
@@ -328,12 +332,17 @@ function insane() {
 		location2 = autoGenerate();
 		location3 = autoGenerate();
 	} while (location1 == location2 || location2 == location3 || location1 == location3);
-	insaneComputer.push(location1, location2, location3);
+	insaneComputer.push(location1, location2);
+	insaneComputer2.push(location3);
 }
 
 function insaneSetup() {
-	return insaneComputer.forEach(num => {
+	 insaneComputer.forEach(num => {
 				pick[num].style.backgroundColor = '#ffcc66';
+				pick[num].removeEventListener("click", display2);
+			})
+			insaneComputer2.forEach(num => {
+				pick[num].innerHTML = "<h1><i class='fas fa-times'></i></h1>";;
 				pick[num].removeEventListener("click", display2);
 			})
 }
