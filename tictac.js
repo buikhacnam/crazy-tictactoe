@@ -235,16 +235,18 @@ function display2(e) {
 		status.innerHTML = "<i class='fas fa-times'></i> turn";
 		e.target.innerHTML = "<h1><i class='far fa-circle'></i></h1>";
 		e.target.removeEventListener("click", display2);
+		
 		player2.push(Number.parseInt((e.target.id), 10));
 		if (check(player2)) {
 			makeColor(resultArr);
 			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
 			stop2();
-			if((player2.length + computer.length == 9) && (!check(player2))){
+			if((player2.length + computer.length == 9) && (!check(player2)) && (gameMode !== "insane")){
 				stop2();
 				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 				moreColor();
-			} if((countDraw + player2.length == 5) && (!check(player2)) && (gameMode == "insane")){
+			} if((countDraw + player2.length == 4) && (!check(player2)) && (gameMode == "insane")){
+				stop2();
 				console.log("draw");
 				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 				moreColor();
@@ -252,7 +254,13 @@ function display2(e) {
 						
 		} else {
 			//if (turnOfplayer < 5) {
-			if(player2.length + computer.length < 9) {
+			if((countDraw + player2.length == 5) && (!check(player2)) && (gameMode == "insane")){
+					stop2();
+					console.log("draw");
+					status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
+					moreColor();
+
+			} else if(player2.length + computer.length < 9) {
 				computerTurn();
 			} else {
 				stop2();
@@ -287,11 +295,12 @@ function computerTurn() {
 			makeColor(resultArr2);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop2();
-		}if((player2.length + computer.length == 9) && (!check2(computer))){
+		}if((player2.length + computer.length == 9) && (!check2(computer)) && (gameMode !== "insane")){
 			stop2();
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
 		} if((countDraw + player2.length == 5) && (!check2(computer)) && (gameMode == "insane")){
+			stop2();
 			console.log("draw");
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
