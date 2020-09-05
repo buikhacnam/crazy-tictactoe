@@ -19,7 +19,7 @@ const status = document.getElementById("status");
 
 const restart = document.getElementById("re-start");
 
-let twoPlayer = false;
+let gameMode = "easy";
 
 
 let numTurn = 0;
@@ -27,19 +27,29 @@ let numTurn = 0;
 let player1 = [];
 let player2 = [];
 let computer = [];
+let crazyComputer = [];
+let insaneComputer = [];
 
 mode.addEventListener("change", gamePlan);
 function gamePlan() {
  
 	if(mode.value == "two-players"){
 		stop2();
-		console.log("two player")
-		 twoPlayer = true;
+		console.log("two player");
+		 gameMode = "two-players";
 	} else if(mode.value == "easy") {
 		stop();
-		console.log("one player")
-	 	twoPlayer = false;
+		console.log("one player");
+	 	gameMode = "easy";
 		
+	} else if (mode.value == "crazy"){
+		stop();	
+		console.log("crazy mode");
+	 	gameMode = "crazy";
+	} else {
+		stop();
+		console.log("insane mode");
+		gameMode = "insane";
 	}
 	newGame();
  }
@@ -49,6 +59,8 @@ function gamePlan() {
 restart.addEventListener("click", newGame);
 
 function newGame() {
+    crazyComputer = [];
+    insaneComputer = [];
 	x.style.backgroundColor = "white";
 	o.style.backgroundColor = "#53c653";	
     status.innerHTML = "<i class='far fa-circle'></i> turn";
@@ -56,22 +68,35 @@ function newGame() {
 	  
 	player1 = [];
 	player2 = [];
+	   
 		computer = [];
 		numTurn = 0;
 		turnOfcomputer = 0;
 		turnOfplayer = 0;
 		resultArr = '';
+		resultArr2 = '';
 		document.body.style.transition = "0,7s";
-	return pick.forEach(num => {	
 		
+		 pick.forEach(num => {	
 		num.innerHTML = "";
 		num.style.color = "white";
-		if ((twoPlayer)) {	
+		num.style.backgroundColor = "#53c653";
+
+		if (gameMode == "two-players") {	
 			num.addEventListener("click", display);
-		} else {
+		} else if (gameMode == "easy" || gameMode == "crazy" || gameMode == "insane") {
 			num.addEventListener("click",display2);
 		} 
 	})
+	if (gameMode == "crazy") {
+		crazy();
+		crazySetup();
+		computer.push(crazyComputer[0], crazyComputer[1]);
+	} else if (gameMode == "insane"){
+		insane()
+		insaneSetup();
+		
+	}
 }
 
 
@@ -81,15 +106,16 @@ const pick = [num1, num2, num3, num4, num5, num6, num7, num8, num9];
 
 
 pick.forEach(num => {	
-	if ((twoPlayer)) {	
+	if (gameMode == "two-players") {	
 		num.addEventListener("click", display);
-	} else {
+	} else if (gameMode == "easy" || gameMode == "crazy") {
 		num.addEventListener("click",display2);
 	}
 
 }) 
 
 let resultArr;
+let resultArr2;
 function makeColor(arr) {
 	moreColor();
 	return arr.forEach(num => {
@@ -106,6 +132,8 @@ function moreColor() {
 	}, 800)
 }
 
+
+
 function check(player) {
  	return	winArray.some(arr => {
 			return arr.every(num => {
@@ -114,6 +142,8 @@ function check(player) {
 		})
 	})
 }
+
+
 
 	
 function display(e) {
@@ -129,7 +159,8 @@ function display(e) {
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop();
 		} else if (!check(player1) && numTurn == 9) {
-			status.innerHTML=("Draw");
+			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
+			moreColor();
 			stop();
 		}
 	
@@ -146,8 +177,9 @@ function display(e) {
 			
 			stop();
 		} else if (!check(player2) && numTurn == 9) {
-			status.innerHTML=("Draw");
+			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			stop();
+			moreColor();
 		}
 	}
 		
@@ -172,42 +204,68 @@ function check2(machine) {
     
     return	newWinArray.some(arr => {
 			return arr.every(num => {
+				resultArr2 = produceResult2(arr);
 				return machine.includes(num);
 		})
+	})
+}
+
+function produceResult2(array) {
+	return array.map(num => {
+		return num + 1;
 	})
 }
 
 let turnOfcomputer = 0;
 let turnOfplayer = 0;
 
+
+
+
 function display2(e) {	
     if (turnOfplayer == turnOfcomputer) {
     	turnOfplayer += 1;	
+	
 		x.style.backgroundColor = "#53c653";
 		o.style.backgroundColor = "white";
 		status.innerHTML = "<i class='fas fa-times'></i> turn";
 		e.target.innerHTML = "<h1><i class='far fa-circle'></i></h1>";
+		e.target.removeEventListener("click", display2);
 		player2.push(Number.parseInt((e.target.id), 10));
 		if (check(player2)) {
 			makeColor(resultArr);
 			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
 			stop2();
+			if((player2.length + computer.length == 9) && (!check(player2))){
+				stop2();
+				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
+				moreColor();
+			}
 						
 		} else {
-			if (turnOfplayer < 5) {
-			computerTurn();
+			//if (turnOfplayer < 5) {
+			if(player2.length + computer.length < 9) {
+				computerTurn();
 			} else {
-				if (!check(player2)) {
-					status.innerHTML=("Draw");
-				}
-			}	
+				stop2();
+				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
+				moreColor();
+			}
+		
+		//	} else {
+		//		if (!check(player2)) {
+		//			status.innerHTML=("Draw");
+		//		}
+		//	}	
    		}
-  		e.target.removeEventListener("click", display2);
+  		
 	}
 }
 
 function computerTurn() {
-    setTimeout( () => {
+  // stop2();
+	setTimeout( () => {
+		
 		o.style.backgroundColor = "#53c653";
 		x.style.backgroundColor = "white";
 		status.innerHTML = "<i class='far fa-circle'></i> turn";
@@ -220,13 +278,20 @@ function computerTurn() {
 		pick[location].innerHTML = "<h1><i class='fas fa-times'></i></h1>";
 	
 		if (check2(computer)) {
-			//makeColor(resultArr);
+			makeColor(resultArr2);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop2();
-		}   
-		   turnOfcomputer += 1;
+		}if((player2.length + computer.length == 9) && (!check2(computer))){
+			stop2();
+			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
+			moreColor();
+		} 
+		turnOfcomputer += 1;
 		
-    }, 1000)    
+		
+	}, 1000)    
+	
+	
 }
 
 function autoGenerate() {
@@ -240,5 +305,86 @@ function stop2() {
 	})
 }
 
+//---------------crazy mode ------------------------
 
-console.log(twoPlayer);
+function crazy() {
+	let location1 = autoGenerate();
+	let location2;
+	do {
+		location2 = autoGenerate();
+	} while (location1 == location2);
+	crazyComputer.push(location1, location2);
+}
+
+function insane() {
+	let location1 = autoGenerate();
+	let location2;
+	let location3;
+	
+	do {
+		location2 = autoGenerate();
+		location3 = autoGenerate();
+	} while (location1 == location2 || location2 == location3 || location1 == location3);
+	insaneComputer.push(location1, location2, location3);
+}
+
+function insaneSetup() {
+	return insaneComputer.forEach(num => {
+				pick[num].style.backgroundColor = '#ffcc66';
+				pick[num].removeEventListener("click", display2);
+			})
+}
+
+
+
+
+function crazySetup() {
+	return crazyComputer.forEach(num => {
+				pick[num].innerHTML = "<h1><i class='fas fa-times'></i></h1>";
+				pick[num].removeEventListener("click", display2);
+			})
+}
+
+
+
+window.addEventListener('load', () => {
+	crazy();
+	insane();
+});
+
+
+/*
+function display3(e) {	
+
+    	
+		x.style.backgroundColor = "#53c653";
+		o.style.backgroundColor = "white";
+		status.innerHTML = "<i class='fas fa-times'></i> turn";
+		e.target.innerHTML = "<h1><i class='far fa-circle'></i></h1>";
+		player2.push(Number.parseInt((e.target.id), 10));
+		if (check(player2)) {
+			makeColor(resultArr);
+			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
+			stop3();
+			if((player2.length + computer.length == 9) && (!check(player2))){
+				stop3();
+			}
+						
+		} else {
+			
+			computerTurn();
+			
+   		}
+  		e.target.removeEventListener("click", display3);
+	
+}
+
+
+
+function stop3() {
+	return	pick.forEach(num => {
+		   return num.removeEventListener("click", display3);
+	   })
+}
+
+*/
