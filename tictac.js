@@ -23,7 +23,7 @@ let gameMode = "easy";
 
 
 let numTurn = 0;
-
+let countDraw = 0;
 let player1 = [];
 let player2 = [];
 let computer = [];
@@ -244,6 +244,10 @@ function display2(e) {
 				stop2();
 				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 				moreColor();
+			} if(countDraw + player2.length == 5 && (!check2(computer))){
+				console.log("draw");
+				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
+				moreColor();
 			}
 						
 		} else {
@@ -259,7 +263,7 @@ function display2(e) {
   		
 	}
 }
-let countDraw = 0;
+
 function computerTurn() {
   // stop2();
 	setTimeout( () => {
@@ -287,7 +291,7 @@ function computerTurn() {
 			stop2();
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
-		} if(countDraw + player2.length == 7 && (!check2(computer))){
+		} if(countDraw + player2.length == 5 && (!check2(computer))){
 			console.log("draw");
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
