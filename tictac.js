@@ -70,6 +70,7 @@ function newGame() {
 	player2 = [];
 	   
 		computer = [];
+		countDraw = 0;
 		numTurn = 0;
 		turnOfcomputer = 0;
 		turnOfplayer = 0;
@@ -261,7 +262,7 @@ function display2(e) {
   		
 	}
 }
-
+let countDraw = 0;
 function computerTurn() {
   // stop2();
 	setTimeout( () => {
@@ -273,9 +274,13 @@ function computerTurn() {
     	do {
     		location = autoGenerate();       
     	} while ((player2.includes(location + 1)) || (computer.includes(location)));
-    	computer.push(location);
+		computer.push(location);
+		if (!insaneComputer.includes(location)){
+			countDraw = countDraw + 1;
+		}
     	pick[location].removeEventListener("click", display2);
 		pick[location].innerHTML = "<h1><i class='fas fa-times'></i></h1>";
+		
 	
 		if (check2(computer)) {
 			makeColor(resultArr2);
@@ -285,7 +290,11 @@ function computerTurn() {
 			stop2();
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
-		} 
+		} if(countDraw + player2.length == 6 && (!check2(computer))){
+			console.log("draw");
+			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
+			moreColor();
+		}
 		turnOfcomputer += 1;
 		
 		
