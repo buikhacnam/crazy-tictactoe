@@ -98,7 +98,7 @@ function newGame() {
 	} else if (gameMode == "insane"){
 		insane()
 		insaneSetup();
-		computer.push(insaneComputer2[0]);
+		computer.push(insaneComputer2[0], insaneComputer2[1]);
 		
 	}
 }
@@ -287,7 +287,7 @@ function computerTurn() {
 			stop2();
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
-		} if(countDraw + player2.length == 6 && (!check2(computer))){
+		} if(countDraw + player2.length == 7 && (!check2(computer))){
 			console.log("draw");
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
@@ -327,13 +327,14 @@ function insane() {
 	let location1 = autoGenerate();
 	let location2;
 	let location3;
-	
+	let location4;
 	do {
 		location2 = autoGenerate();
 		location3 = autoGenerate();
-	} while (location1 == location2 || location2 == location3 || location1 == location3);
-	insaneComputer.push(location1, location2);
-	insaneComputer2.push(location3);
+		location4 = autoGenerate();
+	} while (location1 == location2 || location2 == location3 || location1 == location3 || location1 == location4 || location2 == location4 || location3 == location4);
+	insaneComputer.push(location1, location4);
+	insaneComputer2.push(location3, location2);
 }
 
 function insaneSetup() {
