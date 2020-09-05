@@ -244,7 +244,7 @@ function display2(e) {
 				stop2();
 				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 				moreColor();
-			} if(countDraw + player2.length == 5 && (!check2(computer))){
+			} if((countDraw + player2.length == 5) && (!check(player2)) && (gameMode == "insane")){
 				console.log("draw");
 				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 				moreColor();
@@ -291,7 +291,7 @@ function computerTurn() {
 			stop2();
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
-		} if(countDraw + player2.length == 5 && (!check2(computer))){
+		} if((countDraw + player2.length == 5) && (!check2(computer)) && (gameMode == "insane")){
 			console.log("draw");
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
