@@ -252,12 +252,6 @@ function display2(e) {
 				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 				moreColor();
 			}
-		
-		//	} else {
-		//		if (!check(player2)) {
-		//			status.innerHTML=("Draw");
-		//		}
-		//	}	
    		}
   		
 	}
@@ -362,38 +356,3 @@ window.addEventListener('load', () => {
 });
 
 
-/*
-function display3(e) {	
-
-    	
-		x.style.backgroundColor = "#53c653";
-		o.style.backgroundColor = "white";
-		status.innerHTML = "<i class='fas fa-times'></i> turn";
-		e.target.innerHTML = "<h1><i class='far fa-circle'></i></h1>";
-		player2.push(Number.parseInt((e.target.id), 10));
-		if (check(player2)) {
-			makeColor(resultArr);
-			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
-			stop3();
-			if((player2.length + computer.length == 9) && (!check(player2))){
-				stop3();
-			}
-						
-		} else {
-			
-			computerTurn();
-			
-   		}
-  		e.target.removeEventListener("click", display3);
-	
-}
-
-
-
-function stop3() {
-	return	pick.forEach(num => {
-		   return num.removeEventListener("click", display3);
-	   })
-}
-
-*/
