@@ -57,10 +57,10 @@ function gamePlan() {
 		gameMode = "insane";
 	}
 	newGame();
- }
+}
 
 
-
+// restart button:
 restart.addEventListener("click", newGame);
 
 function newGame() {
@@ -140,7 +140,7 @@ function moreColor() {
 	}, 800)
 }
 
-
+//play with friends:
 
 function check(player) {
  	return	winArray.some(arr => {
@@ -301,7 +301,7 @@ function computerTurn() {
 		pick[location].innerHTML = "<h1><i class='fas fa-times'></i></h1>";
 		
 	
-		if (check2(computer)) {
+		if  (check2(computer)) {
 			makeColor(resultArr2);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop2();
