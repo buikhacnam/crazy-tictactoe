@@ -16,10 +16,7 @@ body {
 	align-items: center;
 }
 
-.mode {
-	margin-bottom: 10px;
-	padding-top: 15px;
-}
+
 
 .mode select {
 	padding: 5px;
@@ -48,11 +45,16 @@ body {
 }
 
 .turn {	
+	display: flex;
 	text-align: center;
-	padding: 2px 50px 2px 50px;
+	padding: 0px 10px 0px 10px;
 	border-radius: 5px;
 	border: 1px solid #53c653;
+	justify-content: space-between;
+	align-items: center;
 }
+
+
 
 #o {
 	background-color: #53c653;
@@ -95,7 +97,7 @@ body {
 }
 
 .restart {
-	margin-top: 35px;
+	margin-top: 25px;
 }
 
 .restart button {

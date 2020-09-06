@@ -2,6 +2,9 @@ const mode = document.getElementById("modes");
 const statusWrapper = document.querySelector(".status-wrapper");
 const button = document.querySelector("button");
 
+const scoreO = document.getElementById("score-o");
+const scoreX = document.getElementById("score-x");
+
 const num1 = document.getElementById("1");
 const num2 = document.getElementById("2");
 const num3 = document.getElementById("3");
@@ -21,7 +24,8 @@ const restart = document.getElementById("re-start");
 
 let gameMode = "easy";
 
-
+let scoreOfO = 0;
+let scoreOfX = 0;
 let numTurn = 0;
 let countDraw = 0;
 let player1 = [];
@@ -162,6 +166,8 @@ function display(e) {
 			makeColor(resultArr);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop();
+			scoreOfX += 1;
+			scoreX.innerHTML = scoreOfX;
 		} else if (!check(player1) && numTurn == 9) {
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 			moreColor();
@@ -178,7 +184,8 @@ function display(e) {
 		if (check(player2)) {
 			makeColor(resultArr);
 			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
-			
+			scoreOfO += 1;
+			scoreO.innerHTML = scoreOfO;
 			stop();
 		} else if (!check(player2) && numTurn == 9) {
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
@@ -240,11 +247,14 @@ function display2(e) {
 		if (check(player2)) {
 			makeColor(resultArr);
 			status.innerHTML = "<i class='far fa-circle'></i> WINS !!!";
+			scoreOfO += 1;
+			scoreO.innerHTML = scoreOfO;
 			stop2();
 			if((player2.length + computer.length == 9) && (!check(player2)) && (gameMode !== "insane")){
 				stop2();
 				status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
 				moreColor();
+				
 			} if((countDraw + player2.length == 4) && (!check(player2)) && (gameMode == "insane")){
 				stop2();
 				console.log("draw");
@@ -295,6 +305,8 @@ function computerTurn() {
 			makeColor(resultArr2);
 			status.innerHTML = "<i class='fas fa-times'></i> WINS !!!";
 			stop2();
+			scoreOfX += 1;
+			scoreX.innerHTML = scoreOfX;
 		}if((player2.length + computer.length == 9) && (!check2(computer)) && (gameMode !== "insane")){
 			stop2();
 			status.innerHTML=("<i class='far fa-circle'></i><i class='fas fa-times'></i> Draw !!!");
