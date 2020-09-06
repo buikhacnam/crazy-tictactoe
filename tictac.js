@@ -308,7 +308,7 @@ function computerTurn() {
 		turnOfcomputer += 1;
 		
 		
-	}, 1000)    
+	}, 600)    
 	
 	
 }

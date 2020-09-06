@@ -28,6 +28,11 @@ body {
 	direction: rtl; 
 }
 
+.mode select:hover {
+	cursor: pointer;
+	
+}
+
 .mode option {
 	direction: ltr; 
 }
@@ -78,10 +83,15 @@ body {
 .num {
 	font-size: 1.3em;
 	text-align: center;
-	border: 3px solid white;
+	border: 5px solid white;
+
 	color: white;
 	justify-items: center;
 	align-items: center;
+}
+
+.num:hover {
+	cursor: pointer;
 }
 
 .restart {
@@ -99,14 +109,22 @@ body {
 	font-size: 1.5em;
 }
 
+.restart button:hover {
+	cursor: pointer;
+}
+
 @media screen and (max-width: 410px) {
 
 	.board {
-		height : 300px;
-		width: 300px;
+		height : 310px;
+		width: 310px;
 		font-size: 0.8em;
 		
 	}
+
+	
+
+
 	
 	
 }
